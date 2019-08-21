@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<ResponsivePopover
+		title="{i18n>productDetails}"
+		class="sapUiPopWithPadding">
+		<content>
+			<List
+				headerText="{ProductID}  {Name}"
+				footerText="{ToSupplier/WebAddress}"
+				backgroundDesign="Translucent">
+				<items>
+					<StandardListItem
+						title="{i18n>productWidth}"
+						info="{path: 'Width', formatter: '.formatter.numberUnit'} {DimUnit}"/>
+					<StandardListItem 
+						title="{i18n>productDepth}"
+						info="{path: 'Depth', formatter: '.formatter.numberUnit'} {DimUnit}"/>
+					<StandardListItem 
+						title="{i18n>productHeight}"
+						info="{path: 'Height', formatter: '.formatter.numberUnit'} {DimUnit}"/>
+					<StandardListItem 
+						title="{i18n>productWeight}"
+						info="{path: 'WeightMeasure', formatter: '.formatter.numberUnit'} {WeightUnit}"/>
+				</items>
+			</List>
+		</content>
+	</ResponsivePopover>
+
+</core:FragmentDefinition>

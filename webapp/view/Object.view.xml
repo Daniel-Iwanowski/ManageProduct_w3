@@ -1,0 +1,69 @@
+<mvc:View
+	id="objectView"
+	controllerName="opensap.manageproducts.ManageProduct_w3.controller.Object" 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:form="sap.ui.layout.form">
+	<semantic:SemanticPage 
+		id="page" 
+		headerPinnable="false" 
+		toggleHeaderOnTitleClick="false" 
+		busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+
+		<semantic:titleHeading>
+			<Title
+				id="idObjectTitile"
+				text="{i18n>objectViewTitle}" 
+				level="H2"/>
+		</semantic:titleHeading>
+
+		<semantic:headerContent>
+
+			<ObjectHeader 
+				id="objectHeader" 
+				title="{ProductID}" 
+				responsive="true"
+				number="{ path: 'Price', formatter: '.formatter.numberUnit' }"
+				numberUnit="{CurrencyCode}"
+				titleActive="true"
+				titlePress="onShowDetailPopover">
+				<attributes>
+					<ObjectAttribute
+						id="idObjectProductName"
+						text="{Name}"/>
+				</attributes>
+				<statuses>
+					<ObjectStatus 
+						text="{
+							parts: [
+								{path: 'WeightUnit'},
+								{path: 'WeightMeasure'}
+							],
+							formatter : '.formatter.delivery'
+						}"/>
+				</statuses>
+
+			</ObjectHeader>
+
+			<mvc:XMLView
+				id="idObjectProductDetails"
+				viewName="opensap.manageproducts.ManageProduct_w3.view.ProductDetails"/>
+
+			<core:Fragment 
+				id="idObjectSupplierInfo"
+				fragmentName="opensap.manageproducts.ManageProduct_w3.view.SupplierInfo" 
+				type="XML"/>
+
+		</semantic:headerContent>
+
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction 
+				id="shareEmail" 
+				press=".onShareEmailPress"/>
+		</semantic:sendEmailAction>
+
+	</semantic:SemanticPage>
+</mvc:View>

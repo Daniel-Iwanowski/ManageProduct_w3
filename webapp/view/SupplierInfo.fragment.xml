@@ -1,0 +1,40 @@
+<core:FragmentDefinition 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core" 
+	xmlns:form="sap.ui.layout.form">
+	<Panel 
+		class="sapUiResponsiveMargin" 
+		width="auto" 
+		expandable="{device>/system/phone}" 
+		expanded="false" 
+		headerText="{i18n>supplierTitle}">
+		<content>
+			<List>
+				<items>
+					<StandardListItem icon="sap-icon://building" title="{ToSupplier/CompanyName}"/>
+					<StandardListItem icon="sap-icon://email" title="{ToSupplier/EmailAddress}"/>
+					<StandardListItem icon="sap-icon://world" title="{ToSupplier/WebAddress}"/>
+					<StandardListItem icon="sap-icon://phone" title="{ToSupplier/PhoneNumber}"/>
+					<StandardListItem icon="sap-icon://map" title="{ToSupplier/Address/City}"/>
+				</items>
+			</List>
+		</content>
+	</Panel>
+	<Panel class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto" headerText="{i18n>mapTitle}">
+		<content>
+			<IconTabBar class="sapUiNoMargin">
+				<items>
+					<IconTabFilter id="idMapStatic" class="sapUiNoMarginBegin sapUiNoMarginEnd" text="{i18n>mapStatic}">
+						<Image class="sapUiNoMarginBegin sapUiNoMarginEnd"
+							src="{ parts: [ 'ToSupplier/Address/Street', 'ToSupplier/Address/Building', 'ToSupplier/Address/City', 'ToSupplier/Address/PostalCode', 'ToSupplier/Address/Country' ], formatter: '.formatter.formatMapURL' }"
+							alt="Map"></Image>
+					</IconTabFilter>
+					<IconTabFilter id="idMapInteractive" class="sapUiNoMarginBegin sapUiNoMarginEnd" text="{i18n>mapInteractive}">
+						<core:HTML
+							content="{ parts: [ 'ToSupplier/Address/Street', 'ToSupplier/Address/Building', 'ToSupplier/Address/City', 'ToSupplier/Address/PostalCode', 'ToSupplier/Address/Country' ], formatter: '.formatter.formatInteractiveMap' }"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Panel>
+</core:FragmentDefinition>
